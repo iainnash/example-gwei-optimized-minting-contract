@@ -34,6 +34,7 @@ contract BaseMetadataToken is ERC721Delegated {
     }
 
     function burn(uint256 tokenId) public {
+        require(_isApprovedOrOwner(msg.sender, tokenId), "Not allowed");
         _burn(tokenId);
         metadataJson[tokenId] = "";
     }
